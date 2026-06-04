@@ -1,0 +1,23 @@
+.task-card {
+  background-color: var(--bg-surface);
+  border-radius: 8px;
+  padding: 23px 16px;
+  box-shadow: var(--task-shadow);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.task-card__title {
+  color: var(--text-primary);
+  transition: color 0.2s ease;
+  word-break: break-word;
+}
+
+.task-card:hover .task-card__title {
+  color: var(--color-purple);
+}
+
+.task-card__subtasks {
+  margin-top: 8px;
+  color: var(--text-secondary);
+}

@@ -1,0 +1,25 @@
+<nav class="board-list" aria-label="Boards">
+  <p class="board-list__heading heading-sm">ALL BOARDS ({{ boards().length }})</p>
+
+  <ul class="board-list__items">
+    @for (board of boards(); track $index) {
+      <li>
+        <button
+          type="button"
+          class="board-list__item"
+          [class.board-list__item--active]="$index === activeIndex()"
+          (click)="selectBoard($index)"
+        >
+          <img src="assets/icon-board.svg" alt="" aria-hidden="true" />
+          <span class="heading-md">{{ board.name }}</span>
+        </button>
+      </li>
+    }
+    <li>
+      <button type="button" class="board-list__item board-list__item--create" (click)="createBoard()">
+        <img src="assets/icon-board.svg" alt="" aria-hidden="true" />
+        <span class="heading-md">+ Create New Board</span>
+      </button>
+    </li>
+  </ul>
+</nav>

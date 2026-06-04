@@ -1,0 +1,43 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  flex-shrink: 0;
+  min-height: 0;
+}
+
+.column__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.column__dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.column__tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 60px;
+  flex: 1;
+}
+
+.task-card-wrap {
+  cursor: pointer;
+}
+
+.column__empty {
+  color: var(--text-secondary);
+  padding: 16px;
+  border: 2px dashed var(--border-color);
+  border-radius: 8px;
+  text-align: center;
+}

@@ -1,0 +1,82 @@
+<app-modal-shell (closed)="close()">
+  @if (task(); as currentTask) {
+    <div class="view-task">
+      <div class="view-task__head">
+        <h2 class="heading-lg">{{ currentTask.title }}</h2>
+        <div class="view-task__menu-wrap">
+          <button
+            type="button"
+            class="view-task__menu-trigger"
+            aria-label="Task options"
+            [attr.aria-expanded]="menuOpen()"
+            (click)="toggleMenu()"
+          >
+            <img src="assets/icon-vertical-ellipsis.svg" alt="" aria-hidden="true" />
+          </button>
+          @if (menuOpen()) {
+            <div class="menu" role="menu">
+              <button type="button" class="menu__item" role="menuitem" (click)="editTask()">
+                Edit Task
+              </button>
+              <button
+                type="button"
+                class="menu__item menu__item--danger"
+                role="menuitem"
+                (click)="deleteTask()"
+              >
+                Delete Task
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+
+      @if (currentTask.description) {
+        <p class="view-task__description body-lg">{{ currentTask.description }}</p>
+      }
+
+      <div class="view-task__section">
+        <p class="view-task__label body-md">
+          Subtasks ({{ completedCount() }} of {{ currentTask.subtasks.length }})
+        </p>
+        <ul class="subtasks">
+          @for (subtask of currentTask.subtasks; track $index) {
+            <li>
+              <label class="subtask" [class.subtask--done]="subtask.isCompleted">
+                <input
+                  type="checkbox"
+                  class="subtask__checkbox"
+                  [checked]="subtask.isCompleted"
+                  (change)="toggleSubtask($index)"
+                />
+                <span class="subtask__box" aria-hidden="true">
+                  @if (subtask.isCompleted) {
+                    <img src="assets/icon-check.svg" alt="" />
+                  }
+                </span>
+                <span class="subtask__title body-md">{{ subtask.title }}</span>
+              </label>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="view-task__section">
+        <p class="view-task__label body-md">Current Status</p>
+        <div class="select-wrap">
+          <select
+            class="select"
+            [value]="currentTask.status"
+            (change)="changeStatus($any($event.target).value)"
+            aria-label="Current status"
+          >
+            @for (name of columnNames(); track name) {
+              <option [value]="name">{{ name }}</option>
+            }
+          </select>
+          <img class="select-wrap__chevron" src="assets/icon-chevron-down.svg" alt="" aria-hidden="true" />
+        </div>
+      </div>
+    </div>
+  }
+</app-modal-shell>

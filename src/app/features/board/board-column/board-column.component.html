@@ -1,0 +1,23 @@
+<section class="column">
+  <header class="column__header heading-sm">
+    <span class="column__dot" [style.background-color]="dotColor"></span>
+    {{ column().name }} ({{ column().tasks.length }})
+  </header>
+
+  <div
+    class="column__tasks column-tasks"
+    cdkDropList
+    [id]="dropListId"
+    [cdkDropListData]="columnIndex()"
+    [cdkDropListConnectedTo]="connectedListIds()"
+    (cdkDropListDropped)="onDrop($event)"
+  >
+    @for (task of column().tasks; track $index) {
+      <div class="task-card-wrap" cdkDrag (click)="openTask($index)">
+        <app-task-card [task]="task" />
+      </div>
+    } @empty {
+      <p class="column__empty body-lg">No tasks yet</p>
+    }
+  </div>
+</section>

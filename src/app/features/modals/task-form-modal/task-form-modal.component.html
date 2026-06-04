@@ -1,0 +1,72 @@
+<app-modal-shell (closed)="close()">
+  <form class="task-form" [formGroup]="form" (ngSubmit)="submit()">
+    <h2 class="modal-title">{{ isEdit() ? 'Edit Task' : 'Add New Task' }}</h2>
+
+    <div class="field">
+      <label for="task-title">Title</label>
+      <input
+        id="task-title"
+        type="text"
+        formControlName="title"
+        placeholder="e.g. Take coffee break"
+        [class.invalid]="submitted && form.controls.title.invalid"
+      />
+      @if (submitted && form.controls.title.invalid) {
+        <span class="error-text">Can&apos;t be empty</span>
+      }
+    </div>
+
+    <div class="field">
+      <label for="task-description">Description</label>
+      <textarea
+        id="task-description"
+        formControlName="description"
+        rows="4"
+        placeholder="e.g. It&apos;s always good to take a break. This 15 minute break will recharge the batteries a little."
+      ></textarea>
+    </div>
+
+    <div class="field">
+      <label>Subtasks</label>
+      <div class="subtask-list" formArrayName="subtasks">
+        @for (control of subtasks.controls; track $index) {
+          <div class="subtask-row">
+            <input
+              type="text"
+              [formControlName]="$index"
+              placeholder="e.g. Make coffee"
+              [class.invalid]="submitted && control.invalid"
+            />
+            <button
+              type="button"
+              class="remove-btn"
+              aria-label="Remove subtask"
+              (click)="removeSubtask($index)"
+            >
+              <img src="/assets/icon-cross.svg" alt="" />
+            </button>
+          </div>
+        }
+      </div>
+      <button type="button" class="btn btn-secondary btn-full" (click)="addSubtask()">
+        + Add New Subtask
+      </button>
+    </div>
+
+    <div class="field">
+      <label for="task-status">Status</label>
+      <div class="select-wrap">
+        <select id="task-status" formControlName="status">
+          @for (name of columnNames(); track name) {
+            <option [value]="name">{{ name }}</option>
+          }
+        </select>
+        <img class="select-chevron" src="/assets/icon-chevron-down.svg" alt="" />
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-full">
+      {{ isEdit() ? 'Save Changes' : 'Create Task' }}
+    </button>
+  </form>
+</app-modal-shell>

@@ -1,0 +1,77 @@
+.board-list {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.board-list__heading {
+  color: var(--text-secondary);
+  padding: 0 24px;
+  margin-bottom: 19px;
+}
+
+.board-list__items {
+  list-style: none;
+  overflow-y: auto;
+}
+
+.board-list__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: calc(100% - 24px);
+  padding: 14px 24px;
+  border-radius: 0 100px 100px 0;
+  color: var(--text-secondary);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  text-align: left;
+}
+
+.board-list__item img {
+  flex-shrink: 0;
+  transition: filter 0.2s ease;
+}
+
+.board-list__item span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.board-list__item:hover {
+  background-color: var(--btn-secondary-bg);
+  color: var(--color-purple);
+}
+
+.board-list__item:hover img {
+  filter: brightness(0) saturate(100%) invert(42%) sepia(53%) saturate(2476%)
+    hue-rotate(220deg) brightness(95%) contrast(89%);
+}
+
+.board-list__item--active {
+  background-color: var(--color-purple);
+  color: var(--color-white);
+}
+
+.board-list__item--active:hover {
+  background-color: var(--color-purple);
+  color: var(--color-white);
+}
+
+.board-list__item--active img,
+.board-list__item--active:hover img {
+  filter: brightness(0) invert(1);
+}
+
+.board-list__item--create {
+  color: var(--color-purple);
+}
+
+.board-list__item--create:hover {
+  background-color: transparent;
+}
+
+.board-list__item--create img {
+  filter: brightness(0) saturate(100%) invert(42%) sepia(53%) saturate(2476%)
+    hue-rotate(220deg) brightness(95%) contrast(89%);
+}

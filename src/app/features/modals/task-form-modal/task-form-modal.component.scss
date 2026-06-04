@@ -1,0 +1,134 @@
+:host {
+  display: block;
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--title-color);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--label-color);
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 23px;
+  color: var(--title-color);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--title-color);
+  opacity: 0.25;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--purple);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 112px;
+}
+
+input.invalid {
+  border-color: var(--red);
+}
+
+.error-text {
+  position: absolute;
+  right: 16px;
+  top: 33px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--red);
+}
+
+.subtask-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.subtask-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.subtask-row input {
+  flex: 1;
+}
+
+.remove-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.remove-btn img {
+  width: 15px;
+  height: 15px;
+}
+
+.remove-btn:hover img {
+  filter: brightness(0) saturate(100%) invert(40%) sepia(83%) saturate(2300%)
+    hue-rotate(330deg);
+}
+
+.select-wrap {
+  position: relative;
+}
+
+.select-wrap select {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.select-chevron {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  width: 10px;
+}
+
+.btn-full {
+  width: 100%;
+}

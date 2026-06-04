@@ -1,0 +1,50 @@
+<app-modal-shell (closed)="close()">
+  <form class="board-form" [formGroup]="form" (ngSubmit)="submit()">
+    <h2 class="modal-title">{{ isEdit() ? 'Edit Board' : 'Add New Board' }}</h2>
+
+    <div class="field">
+      <label for="board-name">Board Name</label>
+      <input
+        id="board-name"
+        type="text"
+        formControlName="name"
+        placeholder="e.g. Web Design"
+        [class.invalid]="submitted && form.controls.name.invalid"
+      />
+      @if (submitted && form.controls.name.invalid) {
+        <span class="error-text">Can&apos;t be empty</span>
+      }
+    </div>
+
+    <div class="field">
+      <label>Board Columns</label>
+      <div class="column-list" formArrayName="columns">
+        @for (control of columns.controls; track $index) {
+          <div class="column-row">
+            <input
+              type="text"
+              [formControlName]="$index"
+              placeholder="e.g. Todo"
+              [class.invalid]="submitted && control.invalid"
+            />
+            <button
+              type="button"
+              class="remove-btn"
+              aria-label="Remove column"
+              (click)="removeColumn($index)"
+            >
+              <img src="/assets/icon-cross.svg" alt="" />
+            </button>
+          </div>
+        }
+      </div>
+      <button type="button" class="btn btn-secondary btn-full" (click)="addColumn()">
+        + Add New Column
+      </button>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-full">
+      {{ isEdit() ? 'Save Changes' : 'Create New Board' }}
+    </button>
+  </form>
+</app-modal-shell>

@@ -1,0 +1,72 @@
+<header class="header">
+  <div class="header__logo">
+    <img class="header__logo-mobile" src="assets/logo-mobile.svg" alt="Kanban" />
+    <img class="header__logo-full" [src]="logoSrc()" alt="Kanban" />
+  </div>
+
+  <div class="header__divider"></div>
+
+  <div class="header__title-area">
+    <button
+      type="button"
+      class="header__board-name"
+      (click)="toggleMobileNav()"
+      aria-haspopup="true"
+    >
+      <h1 class="heading-xl">{{ activeBoard()?.name || 'No boards' }}</h1>
+      <img
+        class="header__chevron"
+        [class.header__chevron--open]="ui.mobileNavOpen()"
+        src="assets/icon-chevron-down.svg"
+        alt=""
+        aria-hidden="true"
+      />
+    </button>
+  </div>
+
+  <div class="header__actions">
+    <button
+      type="button"
+      class="header__add-task"
+      [disabled]="!canAddTask()"
+      (click)="addTask()"
+    >
+      <img src="assets/icon-add-task-mobile.svg" alt="" aria-hidden="true" />
+      <span class="header__add-task-label">+ Add New Task</span>
+    </button>
+
+    <div class="header__menu-wrap">
+      <button
+        type="button"
+        class="header__menu-trigger"
+        aria-label="Board options"
+        [attr.aria-expanded]="menuOpen()"
+        (click)="toggleMenu()"
+        [disabled]="!activeBoard()"
+      >
+        <img src="assets/icon-vertical-ellipsis.svg" alt="" aria-hidden="true" />
+      </button>
+
+      @if (menuOpen()) {
+        <div class="menu-backdrop" (click)="closeMenu()"></div>
+        <div class="menu" role="menu">
+          <button type="button" class="menu__item" role="menuitem" (click)="editBoard()">
+            Edit Board
+          </button>
+          <button
+            type="button"
+            class="menu__item menu__item--danger"
+            role="menuitem"
+            (click)="deleteBoard()"
+          >
+            Delete Board
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+
+  @if (ui.mobileNavOpen()) {
+    <app-mobile-nav />
+  }
+</header>

@@ -1,0 +1,36 @@
+@if (boards().length === 0) {
+  <div class="board-empty">
+    <p class="board-empty__text heading-lg">
+      There are no boards available. Create a new board to get started.
+    </p>
+    <button type="button" class="board-empty__btn" (click)="createBoard()">
+      + Create New Board
+    </button>
+  </div>
+} @else if (board(); as activeBoard) {
+  @if (activeBoard.columns.length === 0) {
+    <div class="board-empty">
+      <p class="board-empty__text heading-lg">
+        This board is empty. Create a new column to get started.
+      </p>
+      <button type="button" class="board-empty__btn" (click)="addColumn()">
+        + Add New Column
+      </button>
+    </div>
+  } @else {
+    <div class="board">
+      @for (column of activeBoard.columns; track column.name + $index) {
+        <app-board-column
+          [column]="column"
+          [columnIndex]="$index"
+          [boardIndex]="boardIndex()"
+          [connectedListIds]="connectedListIds()"
+          (dropped)="onDrop($event)"
+        />
+      }
+      <button type="button" class="board__new-column" (click)="addColumn()">
+        <span class="heading-xl">+ New Column</span>
+      </button>
+    </div>
+  }
+}

@@ -1,0 +1,38 @@
+:host {
+  display: block;
+}
+
+.delete-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--red);
+}
+
+.message {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 23px;
+  color: var(--label-color);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 600px) {
+  .actions {
+    flex-direction: row;
+  }
+
+  .actions .btn {
+    flex: 1;
+  }
+}
