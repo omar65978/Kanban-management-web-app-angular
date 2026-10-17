@@ -1,15 +1,25 @@
-# v0 sandbox internal files
+# Angular build and cache
+/dist
+/.angular
+.angular/
+
+# Dependencies
+/node_modules
+node_modules
+
+# Environment variables
+.env*.local
+
+# v0 & Vercel internal files
 __v0_runtime_loader.js
 __v0_devtools.tsx
 __v0_jsx-dev-runtime.ts
 .snowflake/
 .v0-trash/
 .vercel/
-
-# Environment variables
-.env*.local
-
-# Common ignores
-node_modules
 .next/
+
+# OS & Editor files
 .DS_Store
+Thumbs.db
+*.log
